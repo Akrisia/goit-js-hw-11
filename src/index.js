@@ -1,6 +1,8 @@
 import photosTpl from './templates/photos.hbs';
 import './sass/main.scss';
 import PicsApiService from './js/api-service';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const refs = {
   searchForm: document.querySelector('.search-form'),
@@ -33,6 +35,8 @@ function onLoadMore() {
 
 function appendPhotosMarkup(hits) {
   refs.gallery.insertAdjacentHTML('beforeend', photosTpl(hits));
+  const lightBox = new SimpleLightbox(`.gallery a`);
+  lightBox.refresh();
 }
 
 function clearPhotosContainer() {

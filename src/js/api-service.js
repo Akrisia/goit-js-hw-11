@@ -25,6 +25,9 @@ export default class PicsApiService {
         Notiflix.Notify.failure(`We're sorry, but you've reached the end of search results.`);
         return;
       }
+      if (this.page > 1) {
+        Notiflix.Notify.info(`Hooray! We found ${response.data.totalHits} images.`);
+      }
       this.incrementPage();
       return response.data.hits;
     } catch (error) {
