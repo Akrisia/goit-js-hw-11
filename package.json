@@ -6,8 +6,7 @@
   "homepage": "https://Akrisia.github.io/goit-js-hw-11",
   "scripts": {
     "dev": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /goit-js-hw-11/",
-    "server": "json-server --watch db.json"
+    "build": "parcel build src/*.html --public-url /goit-js-hw-11/"
   },
   "repository": {
     "type": "git",
@@ -20,7 +19,6 @@
     "url": "https://github.com/Akrisia/goit-js-hw-11/issues"
   },
   "devDependencies": {
-    "json-server": "^0.17.0",
     "parcel-bundler": "^1.12.5",
     "parcel-plugin-handlebars-precompile": "^1.0.2",
     "parcel-plugin-nuke-dist": "^1.0.1",

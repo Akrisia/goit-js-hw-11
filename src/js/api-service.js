@@ -22,7 +22,7 @@ export default class PicsApiService {
         return;
       }
       if (this.page - 1 > response.data.totalHits / 40) {
-        Notiflix.Notify.info(`We're sorry, but you've reached the end of search results.`);
+        Notiflix.Notify.failure(`We're sorry, but you've reached the end of search results.`);
         return;
       }
       this.incrementPage();
