@@ -1,14 +1,10 @@
-import photosTpl from './templates/photos.hbs';
 import './sass/main.scss';
 import PicsApiService from './js/api-service';
-import SimpleLightbox from 'simplelightbox';
-import 'simplelightbox/dist/simple-lightbox.min.css';
+import { refs } from './js/refs';
+import { useLightBox } from './js/use-lightbox';
+import { clearGallery } from './js/clear-gallery';
+import { appendMarkup } from './js/append-markup';
 
-const refs = {
-  searchForm: document.querySelector('.search-form'),
-  gallery: document.querySelector('.gallery'),
-  loadMoreBtn: document.querySelector('.load-more'),
-};
 const picsApiService = new PicsApiService();
 
 refs.searchForm.addEventListener('submit', onSearch);
@@ -20,9 +16,9 @@ function onSearch(evt) {
   picsApiService.query = evt.currentTarget.elements.searchQuery.value;
   picsApiService.resetPage();
   picsApiService.fetchPhotos().then(hits => {
-    clearPhotosContainer();
+    clearGallery();
     if (hits) {
-      appendPhotosMarkup(hits);
+      appendMarkup(hits);
       useLightBox();
       refs.loadMoreBtn.classList.remove('visually-hidden');
     }
@@ -31,19 +27,5 @@ function onSearch(evt) {
 }
 
 function onLoadMore() {
-  picsApiService.fetchPhotos().then(appendPhotosMarkup).then(useLightBox);
-}
-
-function appendPhotosMarkup(hits) {
-  refs.gallery.insertAdjacentHTML('beforeend', photosTpl(hits));
-}
-
-function clearPhotosContainer() {
-  refs.gallery.innerHTML = '';
-  refs.loadMoreBtn.classList.add('visually-hidden');
-}
-
-function useLightBox() {
-  const lightBox = new SimpleLightbox(`.gallery a`);
-  lightBox.refresh();
+  picsApiService.fetchPhotos().then(appendMarkup).then(useLightBox);
 }
