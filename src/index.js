@@ -23,6 +23,7 @@ function onSearch(evt) {
     clearPhotosContainer();
     if (hits) {
       appendPhotosMarkup(hits);
+      useLightBox();
       refs.loadMoreBtn.classList.remove('visually-hidden');
     }
     return;
@@ -30,16 +31,19 @@ function onSearch(evt) {
 }
 
 function onLoadMore() {
-  picsApiService.fetchPhotos().then(appendPhotosMarkup);
+  picsApiService.fetchPhotos().then(appendPhotosMarkup).then(useLightBox);
 }
 
 function appendPhotosMarkup(hits) {
   refs.gallery.insertAdjacentHTML('beforeend', photosTpl(hits));
-  const lightBox = new SimpleLightbox(`.gallery a`);
-  lightBox.refresh();
 }
 
 function clearPhotosContainer() {
   refs.gallery.innerHTML = '';
   refs.loadMoreBtn.classList.add('visually-hidden');
+}
+
+function useLightBox() {
+  const lightBox = new SimpleLightbox(`.gallery a`);
+  lightBox.refresh();
 }
