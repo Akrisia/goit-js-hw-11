@@ -90,4 +90,4 @@ var e,t=arguments[3];!function(t,r){"object"==typeof exports&&"object"==typeof m
 },{"./refs":"VyiV","../templates/photos.hbs":"dJSr"}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss");var e=u(require("./js/api-service")),r=require("./js/refs"),s=require("./js/use-lightbox"),t=require("./js/clear-gallery"),a=require("./js/append-markup");function u(e){return e&&e.__esModule?e:{default:e}}const n=new e.default;function i(e){e.preventDefault(),n.query=e.currentTarget.elements.searchQuery.value,n.resetPage(),n.fetchPhotos().then(e=>{(0,t.clearGallery)(),e&&((0,a.appendMarkup)(e),(0,s.useLightBox)(),r.refs.loadMoreBtn.classList.remove("visually-hidden"))})}function l(){n.fetchPhotos().then(a.appendMarkup).then(s.useLightBox)}r.refs.searchForm.addEventListener("submit",i),r.refs.loadMoreBtn.addEventListener("click",l);
 },{"./sass/main.scss":"clu1","./js/api-service":"hC31","./js/refs":"VyiV","./js/use-lightbox":"yiPN","./js/clear-gallery":"pomO","./js/append-markup":"DOn0"}]},{},["Focm"], null)
-//# sourceMappingURL=/goit-js-hw-11/src.ce815808.js.map
+//# sourceMappingURL=/goit-js-hw-11/src.64a07d82.js.map
