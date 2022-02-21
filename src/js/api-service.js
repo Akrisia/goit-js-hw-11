@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Notiflix from 'notiflix';
+import { refs } from './refs';
 
 const BASE_URL = 'https://pixabay.com/api';
 const API_KEY = '25787045-a8ddf7324e727a4045d3f3d7c';
@@ -20,12 +21,10 @@ export default class PicsApiService {
           `Sorry, there are no images matching your search query. Please try again.`,
         );
         return;
-      }
-      if (this.page - 1 > response.data.totalHits / 40) {
+      } else if (this.page > response.data.totalHits / 40) {
+        refs.loadMoreBtn.classList.add('visually-hidden');
         Notiflix.Notify.failure(`We're sorry, but you've reached the end of search results.`);
-        return;
-      }
-      if (this.page > 1) {
+      } else if (this.page > 1) {
         Notiflix.Notify.info(`Hooray! We found ${response.data.totalHits} images.`);
       }
       this.incrementPage();
