@@ -13,22 +13,24 @@ export default class PicsApiService {
 
   async fetchPhotos() {
     try {
-      const response = await axios.get(
+      const {
+        data: { hits, totalHits },
+      } = await axios.get(
         `${BASE_URL}/?key=${API_KEY}&q=${this.query}&image_type=photo&orientation=horizontal&safesearch=true&per_page=40&page=${this.page}`,
       );
-      if (response.data.totalHits === 0) {
+      if (totalHits === 0) {
         Notiflix.Notify.failure(
           `Sorry, there are no images matching your search query. Please try again.`,
         );
         return;
-      } else if (this.page > response.data.totalHits / 40) {
+      } else if (this.page > totalHits / 40) {
         refs.loadMoreBtn.classList.add('visually-hidden');
         Notiflix.Notify.failure(`We're sorry, but you've reached the end of search results.`);
       } else if (this.page > 1) {
-        Notiflix.Notify.info(`Hooray! We found ${response.data.totalHits} images.`);
+        Notiflix.Notify.info(`Hooray! We found ${totalHits} images.`);
       }
       this.incrementPage();
-      return response.data.hits;
+      return hits;
     } catch (error) {
       console.log(error);
     }

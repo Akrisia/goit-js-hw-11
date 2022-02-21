@@ -20,7 +20,9 @@ function onSearch(evt) {
     if (hits) {
       appendMarkup(hits);
       useLightBox();
-      refs.loadMoreBtn.classList.remove('visually-hidden');
+      if (hits.length === 40) {
+        refs.loadMoreBtn.classList.remove('visually-hidden');
+      }
     }
     return;
   });
