@@ -24,7 +24,6 @@ function onSearch(evt) {
         refs.loadMoreBtn.classList.remove('visually-hidden');
       }
     }
-    return;
   });
 }
 

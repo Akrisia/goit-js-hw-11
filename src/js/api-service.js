@@ -26,7 +26,7 @@ export default class PicsApiService {
       } else if (this.page > totalHits / 40) {
         refs.loadMoreBtn.classList.add('visually-hidden');
         Notiflix.Notify.failure(`We're sorry, but you've reached the end of search results.`);
-      } else if (this.page > 1) {
+      } else if (this.page === 1) {
         Notiflix.Notify.info(`Hooray! We found ${totalHits} images.`);
       }
       this.incrementPage();
